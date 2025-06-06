@@ -10,20 +10,16 @@ pip install djangorestframework
 django-admin startproject core .
 >> invés de core tem gente que usa app <<
 
-4. para criar o banco de dados:
+4. para iniciar o banco de dados padrão do django (gerar as tabelas ex: usuarios, grupos, permissões etc):
 python manage.py migrate
 
-5. para criar o superuser (admin):
-python manage.py createsuperuser
->> http://127.0.0.1:8000/admin/ <<
-
-6. para iniciar o servidor:
+5. para iniciar o servidor:
 python manage.py runserver
 
-7. para criar novos apps/models:
+6. para criar novos apps/models:
 python manage.py startapp customers
 
-8. alterar o arquivo settings.py para adicionar o app customers e rest_framework:
+7. alterar o arquivo settings.py para adicionar o app customers e rest_framework:
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,6 +31,24 @@ INSTALLED_APPS = [
     'customers',
 ]
 
+8. para criar as migrations e gerar as tabelas no banco de dados:
+python manage.py makemigrations
+
+9. para aplicar as migrations e gerar de fato as tabelas no banco de dados:
+python manage.py migrate
+
+10. para criar o superuser (admin):
+python manage.py createsuperuser
+>> http://127.0.0.1:8000/admin/ <<
+
+11. configurar a visão do superuser:
+    i. alterar o idioma em settings.py (LANGUAGE_CODE = 'pt-br' & TIME_ZONE = 'America/Sao_Paulo')
+    ii. alterar as views do superuser em admin.py (no app customers)(ex: CustomerAdmin)
+    
+12. criar signals para atualizar o status do veículo quando ele entra e sai do estacionamento
+    i. criar arquivo signals.py no app parking
+    ii. criar signal para atualizar o status do veículo quando ele entra e sai do estacionamento
+    iii. registrar o signal no arquivo apps.py do app parking
 -------------------------------------------------------------------
 https://www.youtube.com/watch?v=rJOTprYn3e4
 1:18:16
